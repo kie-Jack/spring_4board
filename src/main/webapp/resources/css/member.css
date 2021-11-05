@@ -1,0 +1,52 @@
+td {
+	padding: 10px;
+	/* 	border: 1px solid gray; */
+}
+
+table {
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
+}
+
+input, select {
+	padding: 7px;
+	border-radius: 4px;
+	border: 2px solid #ccc;
+	box-sizing: border-box;
+}
+
+input[type=text], input[type=password], input[type=email] {
+	width: 70%;
+}
+
+input[type=number], select {
+	width: 20%;
+}
+
+input[type=submit], input[type=reset],input[type=button] {
+	padding: 7px 15px;
+	margin: 7px 5px;
+	cursor: pointer;
+	background: #3d4f5f;
+	color: white;
+	border: none;
+}
+
+input[type=submit]:hover, input[type=reset]:hover ,input[type=button]:hover{
+	background: #4b1832;
+}
+
+label {
+	display: inline-block;
+	width: 60%;
+	padding: 10px;
+	margin: auto;
+	background: #cc6699;
+	border-radius: 4px;
+	text-align: center;
+	color: #eee;
+	width: 60%;
+}
+#addr_id {
+	/* display: none; */
+}

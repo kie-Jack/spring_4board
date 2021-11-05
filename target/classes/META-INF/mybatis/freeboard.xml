@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jcpdev.board.dao.FreeboardMapper"> <!-- namespace : java 인터페이스와 매핑될 파일 지정. -->
+	
+	<!-- sql 정의하는 태그의 id값은 매퍼 인터페이스의 메소드 이름과 동일하도록 설정합니다.  -->
+
+	
+	<delete id="delete" parameterType="int">
+		delete from freeboard where idx=#{idx}
+	</delete>
+	
+	<select id="getBoardOne" parameterType="int" resultType="Board">
+		select * from freeboard where idx=#{idx}
+	</select>
+	
+	<!-- 테이블에 pk , 자동증가 되는 컬럼을 설정합니다.   insert와 update 쿼리에서 사용합니다.-->
+	<insert id="insert" parameterType="Board" useGeneratedKeys="true" keyProperty="idx">
+		insert into 
+			freeboard(name,password,subject,content)
+		values
+			(#{name},#{password},#{subject},#{content})
+	</insert>
+	
+	<update id="update" parameterType="Board">
+		update freeboard set subject=#{subject},content=#{content} where idx=#{idx}
+	</update>
+	
+	<select id="getAll" resultType="Board">
+		select * from freeboard
+	</select>
+	
+	<!-- 조회수 -->
+	<update id="updateReadCnt" parameterType="int">
+		update freeboard set readcount=readcount+1 where idx=#{idx}
+	</update>
+	
+		
+	<select id="getCount" resultType="int">
+		select count(*) from freeboard
+	</select>
+	
+	<select id="getPagelist" parameterType="PageDto" resultType="Board">
+		select * from freeboard order by idx desc LIMIT #{startNo},#{pageSize}
+	</select>
+	<!-- 검색 SQL : 검색 기준 컬럼은 1) 내용 2) 이름  3) 제목  4) 내용+제목   *** 동적 쿼리 ***-->
+	<select id="searchList" parameterType="PageDto" resultType="Board">
+		SELECT * FROM freeboard 
+				  <if test='"C".equals(field)'>  <!-- 파라미터 PageDto의 field 속성 -->
+				   where content like concat('%', #{findText},'%')
+				  </if>
+				  <if test='"N".equals(field)'>  
+				   where name like concat('%', #{findText},'%') <!-- 파라미터 PageDto의 findText 속성 -->
+				  </if>
+				  <if test='"S".equals(field)'>
+				   where subject like concat('%', #{findText},'%')
+				  </if>
+				  <if test='"CS".equals(field)'>
+				   where content like concat('%', #{findText},'%')
+				   OR subject like concat('%', #{findText},'%')
+				  </if>        
+		          ORDER BY idx DESC 
+		          limit #{startNo},#{pageSize}
+	</select>
+	<!-- 검색결과 갯수를 쿼리 실행 : 검색 결과 페이징을 위해서 필요합니다.  -->
+	<select id="searchCount" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) FROM freeboard 
+				  <if test='"C".equals(field)'>  <!-- 파라미터 PageDto의 field 속성 -->
+				   where content like concat('%', #{findText},'%')
+				  </if>
+				  <if test='"N".equals(field)'>  
+				   where name like concat('%', #{findText},'%') <!-- 파라미터 PageDto의 findText 속성 -->
+				  </if>
+				  <if test='"S".equals(field)'>
+				   where subject like concat('%', #{findText},'%')
+				  </if>
+				  <if test='"CS".equals(field)'>
+				   where content like concat('%', #{findText},'%')
+				   OR subject like concat('%', #{findText},'%')
+				  </if>        
+	</select>
+</mapper>
