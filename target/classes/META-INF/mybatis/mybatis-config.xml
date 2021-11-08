@@ -8,6 +8,7 @@
  		<typeAlias type="com.jcpdev.board.model.Board" alias="Board"/>
  		<typeAlias type="com.jcpdev.board.model.Comment" alias="Comment"/>
  		<typeAlias type="com.jcpdev.board.model.PageDto" alias="PageDto"/>
+ 		<typeAlias type="com.jcpdev.board.model.Customer" alias="Customer"/>
  	</typeAliases>
 </configuration>
 
