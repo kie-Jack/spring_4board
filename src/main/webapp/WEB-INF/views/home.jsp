@@ -14,6 +14,7 @@
 <hr/>
 <a href="community/list">커뮤니티</a>
 <a href="community/list2">커뮤니티</a><br>
+<a href="gallery/gallery">갤러리</a><br>
 <c:if test="${sessionScope.customer != null }">	<!-- customer는 Session Attribute입니다. -->
 	${sessionScope.customer.name } 님 (${sessionScope.customer.email}) 환영합니다. <br>
 	<a href="customer/detail">나의 정보</a><br> ${sessionScope.customer.password }

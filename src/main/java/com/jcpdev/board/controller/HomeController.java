@@ -1,4 +1,4 @@
-package com.jcpdev.board;
+package com.jcpdev.board.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

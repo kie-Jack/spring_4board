@@ -31,7 +31,7 @@
 	<li>지역 : ${customer.addr}</li>
 	<li>취미 : ${customer.hobby}</li>
 </ul>
-<a href="/member">home</a>
+<a href="/board">home</a>
 <a href="update">정보수정</a>
 
 </body>
