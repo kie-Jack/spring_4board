@@ -54,12 +54,14 @@ form > input:nth-child(5) {
 <hr> <!-- 업로드 결과 확인 : c:\upload 폴더에 파일 있는지 , db table 에 insert  -->
 <!-- 파일업로드 전송을 한 후에 view 를 gallery.jsp 로 하고 아래에 업로드 이미지가 나오도록 합니다. -->	
 <c:forEach var="item" items="${list }">
-<c:set var="fileArr" value="${fn:split(item.filename,',')}"/>
+<c:set var="fileArr" value="${fn:split(item.filename,',')}"/> <!-- filename 속성값에서 , 로 구분된 파일명 1개씩 가져와 배열생성 -->
 	<div class="container">
 		<div class="thumbnail">
 			<c:forEach var="img" items="${fileArr }">
 			<img alt="gallery" width="100px" src="/upload/${img }">  
-<%-- 			<img alt="gallery" width="100px" src="<c:url value='/upload/${img }'/>">   --%>
+<%-- 			<img alt="gallery" width="100px" src="<c:url value='/upload/${img }'/>">
+				c:url은 contextPath에서 시작합니다.
+   --%>
 			</c:forEach>
 			<!-- /img/는 url 경로, 이 경로와 c:\upload 매핑이 필요합니다. : server.xml-->
 		</div>

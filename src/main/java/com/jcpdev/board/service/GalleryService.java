@@ -38,9 +38,8 @@ public class GalleryService {
 			for (MultipartFile f : files) { // 첨부된 파일리스트에 하나씩
 
 				String newpath = "";
-//	               String fileName = "board_" + f.getOriginalFilename();   //board_원래 파일명.확장자 ,파일명 변경하여 db에 저장합니다.
-				String fileName = "board_" + randomString(f.getOriginalFilename()); // board_원래 파일명.확장자 ,파일명 변경하여 db에
-																					// 저장합니다.
+//	            String fileName = "board_" + f.getOriginalFilename();   // board_원래파일명.확장자 를 새로운파일명으로 하여 db에 저장합니다.
+	            String fileName = "board_" + randomString(f.getOriginalFilename());   //board_랜덤문자열.확장자 를 새로운파일명으로 하여 db에 저장합니다.
 				if (!fileName.equals("")) {
 					newpath = path + "\\" + fileName; // 업로드경로+파일명
 					sb.append(fileName).append(",");
